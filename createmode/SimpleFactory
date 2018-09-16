@@ -6,6 +6,9 @@ SimpleFatory
 Factory Method lets a class defer instantiation to subclasses.
 （定义一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法使一个类的实例化延迟到其子类。）
 
+简单工厂模式：
+一个模块仅需要一个工厂类，没有必要把它产生出来，使用静态的方法
+
 隐藏了类的实现，不知道他有多少个子类实现，工厂里返回的不知道是哪个实现类
 
 简单工厂模式的意图。
