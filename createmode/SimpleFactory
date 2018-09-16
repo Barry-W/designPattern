@@ -1,3 +1,55 @@
 
 
 SimpleFatory
+
+隐藏了类的实现，不知道他有多少个子类实现，工厂里返回的不知道是哪个实现类
+
+简单工厂模式的意图。
+
+public interface Sender {  
+    public void Send();  
+}  
+
+public class MailSender implements Sender {  
+    @Override  
+    public void Send() {  
+        System.out.println("this is mailsender!");  
+    }  
+}  
+
+public class SmsSender implements Sender {  
+  
+    @Override  
+    public void Send() {  
+        System.out.println("this is sms sender!");  
+    }  
+}  
+
+public class SendFactory {  
+  
+    public Sender produce(String type) {  
+        if ("mail".equals(type)) {  
+            return new MailSender();  
+        } else if ("sms".equals(type)) {  
+            return new SmsSender();  
+        } else {  
+            System.out.println("请输入正确的类型!");  
+            return null;  
+        }  
+    }  
+}  
+
+
+public class FactoryTest {  
+  
+    public static void main(String[] args) {  
+        SendFactory factory = new SendFactory();  
+        Sender sender = factory.produce("sms");  
+        sender.Send();  
+    }  
+}  
+
+
+
+
+
