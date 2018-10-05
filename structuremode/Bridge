@@ -17,16 +17,60 @@
 5）. 你想在多个实现间 共享实现，但同时要求客户并不知道这一点。
 
 
+public interface Implementor {
+     public void operation();
+ }
+ 
+ public class ConcreateImplementorA implements Implementor {
+     @Override
+     public void operation() {
+         System.out.println("this is concreteImplementorA's operation...");
+     }
+}
+ 
+ public class ConcreateImplementorB implements Implementor {
+     @Override
+     public void operation() {
+         System.out.println("this is concreteImplementorB's operation...");
+     }
+}
+
+public abstract class Abstraction {
+      private Implementor implementor;
+  
+      public Implementor getImplementor() {
+          return implementor;
+      }
+  
+      public void setImplementor(Implementor implementor) {
+          this.implementor = implementor;
+     }
+ 
+     protected void operation(){
+         implementor.operation();
+     }
+ }
+
+ public class RefinedAbstraction extends Abstraction {
+     @Override
+     protected void operation() {
+         super.getImplementor().operation();
+     }
+ }
 
 
-
-
-
-
-
-
-
-
-
+public class BridgeTest {
+     public static void main(String[] args) {
+         Abstraction abstraction = new RefinedAbstraction();
+          //调用第一个实现类
+         abstraction.setImplementor(new ConcreateImplementorA());
+         abstraction.operation();
+         
+         //调用第二个实现类
+         abstraction.setImplementor(new ConcreateImplementorB());
+         abstraction.operation();
+ 
+     }
+ }
 
 
